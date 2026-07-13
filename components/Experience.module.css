@@ -1,0 +1,247 @@
+.section {
+  padding: 120px 32px;
+  background: transparent;
+  border-top: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-size: clamp(28px, 5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.sub {
+  font-size: 16px;
+  color: var(--text-2);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Timeline Wrapper */
+.timelineWrapper {
+  position: relative;
+  margin-top: 40px;
+  padding: 20px 0;
+}
+
+/* Vertical line */
+.timelineLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--glass-border), rgba(255, 255, 255, 0.1) 50%, transparent);
+  transform: translateX(-50%);
+  transform-origin: top;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  position: relative;
+}
+
+/* Individual timeline item */
+.timelineItem {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.leftSide {
+  justify-content: flex-start;
+}
+
+.rightSide {
+  justify-content: flex-end;
+}
+
+/* Timeline dot */
+@keyframes pulseDot {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.timelineDot {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--accent-color);
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 12px var(--accent-color);
+  animation: pulseDot 2s infinite;
+}
+
+.dotCore {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-color);
+}
+
+/* Card layout */
+.card {
+  width: 45%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.card:hover::after {
+  animation: glassSheen 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.period {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.roleTitle {
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.companyInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-2);
+  margin-bottom: 20px;
+  font-family: var(--font-mono);
+}
+
+.company {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.separator {
+  color: var(--text-3);
+}
+
+.desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-2);
+  margin-bottom: 24px;
+}
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+.bullet {
+  font-weight: bold;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .timelineLine {
+    left: 20px;
+    transform: none;
+  }
+  
+  .timelineItem {
+    justify-content: flex-start;
+    padding-left: 50px;
+  }
+  
+  .timelineDot {
+    left: 20px;
+    transform: translateX(-50%);
+  }
+  
+  .card {
+    width: 100%;
+    padding: 24px;
+  }
+}
