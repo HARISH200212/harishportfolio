@@ -159,6 +159,14 @@
   transform: translateX(2px);
 }
 
+/* Right Actions Wrapper */
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  z-index: 101;
+}
+
 /* Burger Mobile Menu */
 .burger {
   display: none;
@@ -178,6 +186,18 @@
   background: var(--text);
   border-radius: 2px;
   transition: all 0.3s ease;
+}
+
+.burgerOpen:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.burgerOpen:nth-child(2) {
+  opacity: 0;
+}
+
+.burgerOpen:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Theme Switcher Widget */
@@ -229,6 +249,10 @@
 
 /* Mobile Responsiveness */
 @media (max-width: 1024px) {
+  .inner {
+    padding: 0 16px;
+  }
+
   .burger {
     display: flex;
   }
@@ -243,6 +267,7 @@
     align-items: center;
     gap: 24px;
     z-index: 99;
+    overflow-y: auto;
   }
 
   .links.open {

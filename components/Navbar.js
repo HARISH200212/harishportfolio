@@ -134,22 +134,6 @@ export default function Navbar() {
             </li>
           ))}
           
-          {/* Theme Switcher inside navigation menu */}
-          <li className={styles.themeItem}>
-            <div className={styles.themeSwitcher}>
-              {themes.map((t) => (
-                <button
-                  key={t.name}
-                  className={`${styles.themeBtn} ${currentTheme === t.name ? styles.themeBtnActive : ""}`}
-                  style={{ backgroundColor: t.primary }}
-                  onClick={() => selectTheme(t)}
-                  title={`${t.name} Theme`}
-                  aria-label={`Switch to ${t.name} theme`}
-                />
-              ))}
-            </div>
-          </li>
-          
           {/* Hire Me CTA styled exactly like Lendex */}
           <li>
             <a href="mailto:harishpostmail@gmail.com" className={styles.cta}>
@@ -158,16 +142,32 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {/* Mobile menu trigger */}
-        <button
-          className={styles.burger}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <span className={menuOpen ? styles.burgerOpen : ""}></span>
-          <span className={menuOpen ? styles.burgerOpen : ""}></span>
-          <span className={menuOpen ? styles.burgerOpen : ""}></span>
-        </button>
+        {/* Right side controls (Theme Switcher + Burger Menu Trigger) */}
+        <div className={styles.rightActions}>
+          <div className={styles.themeSwitcher}>
+            {themes.map((t) => (
+              <button
+                key={t.name}
+                className={`${styles.themeBtn} ${currentTheme === t.name ? styles.themeBtnActive : ""}`}
+                style={{ backgroundColor: t.primary }}
+                onClick={() => selectTheme(t)}
+                title={`${t.name} Theme`}
+                aria-label={`Switch to ${t.name} theme`}
+              />
+            ))}
+          </div>
+
+          {/* Mobile menu trigger */}
+          <button
+            className={styles.burger}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={menuOpen ? styles.burgerOpen : ""}></span>
+            <span className={menuOpen ? styles.burgerOpen : ""}></span>
+            <span className={menuOpen ? styles.burgerOpen : ""}></span>
+          </button>
+        </div>
       </div>
     </nav>
   );
