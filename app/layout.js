@@ -20,6 +20,11 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata = {
   title: "Harish R — MERN Stack Developer",
   description:
