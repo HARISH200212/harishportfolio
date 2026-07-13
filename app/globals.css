@@ -194,3 +194,10 @@ body::before {
   }
 }
 
+/* Global mobile spacing adjustments */
+@media (max-width: 768px) {
+  section, [class*="section"] {
+    padding: 80px 16px !important;
+  }
+}
+
