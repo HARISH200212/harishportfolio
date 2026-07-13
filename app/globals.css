@@ -52,6 +52,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -81,6 +83,9 @@ a, button, span, p, h1, h2, h3, h4, h5, h6, svg, .card, [class*="card"], [class*
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 

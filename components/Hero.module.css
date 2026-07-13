@@ -489,19 +489,18 @@
     letter-spacing: -2px;
   }
   .imageOuterWrapper {
-    width: 260px;
-    height: 260px;
-  }
-  .profileCard {
     width: 220px;
     height: 220px;
   }
+  .profileCard {
+    width: 180px;
+    height: 180px;
+  }
   .orbitRing1 {
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
   }
   .orbitRing2 {
-    width: 360px;
-    height: 360px;
+    display: none;
   }
 }
