@@ -7,6 +7,7 @@ export default function CustomCursor() {
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -17,6 +18,11 @@ export default function CustomCursor() {
   const cursorYSpring = useSpring(cursorY, springConfig);
 
   useEffect(() => {
+    // Detect touch device
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(isTouch);
+    if (isTouch) return;
+
     const moveCursor = (e) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -61,7 +67,7 @@ export default function CustomCursor() {
     };
   }, [isVisible]);
 
-  if (typeof window === "undefined" || !isVisible) return null;
+  if (typeof window === "undefined" || !isVisible || isTouchDevice) return null;
 
   return (
     <>

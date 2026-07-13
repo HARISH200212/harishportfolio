@@ -95,87 +95,136 @@ export default function Projects() {
           <h2 className={styles.heading}>Selected <em>Works</em></h2>
         </div>
 
-        <motion.div
-          className={styles.layout}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          variants={revealVariants}
-        >
-          {/* Sidebar */}
-          <div className={styles.sidebar}>
-            {projects.map((p, i) => (
-              <button
-                key={p.id}
-                className={`${styles.tab} ${active === i ? styles.tabActive : ""}`}
-                onClick={() => setActive(i)}
-                style={{ "--accent-color": p.accent }}
-              >
-                <span className={styles.tabNum}>{p.id}</span>
-                <div className={styles.tabContent}>
-                  <span className={styles.tabEmoji}>{p.emoji}</span>
-                  <span className={styles.tabName}>{p.name}</span>
-                </div>
-                {p.featured && <span className={styles.featuredBadge}>Featured</span>}
-                
-                {/* Sliding active indicator */}
-                {active === i && (
-                  <motion.div
-                    layoutId="activeProjectTab"
-                    className={styles.activeBg}
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Detail panel */}
+        {/* Desktop Layout */}
+        <div className={styles.desktopLayout}>
           <motion.div
-            className={styles.detail}
-            key={active}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            className={styles.layout}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={revealVariants}
           >
-            <div className={styles.detailTop}>
-              <div className={styles.detailEmoji} style={{ background: `${proj.accent}15`, border: `1px solid ${proj.accent}30` }}>
-                {proj.emoji}
-              </div>
-              <div>
-                <p className={styles.detailNum} style={{ color: proj.accent }}>{proj.id}</p>
-                <h3 className={styles.detailName}>{proj.name}</h3>
-                <p className={styles.detailTagline}>{proj.tagline}</p>
-              </div>
+            {/* Sidebar */}
+            <div className={styles.sidebar}>
+              {projects.map((p, i) => (
+                <button
+                  key={p.id}
+                  className={`${styles.tab} ${active === i ? styles.tabActive : ""}`}
+                  onClick={() => setActive(i)}
+                  style={{ "--accent-color": p.accent }}
+                >
+                  <span className={styles.tabNum}>{p.id}</span>
+                  <div className={styles.tabContent}>
+                    <span className={styles.tabEmoji}>{p.emoji}</span>
+                    <span className={styles.tabName}>{p.name}</span>
+                  </div>
+                  {p.featured && <span className={styles.featuredBadge}>Featured</span>}
+                  
+                  {/* Sliding active indicator */}
+                  {active === i && (
+                    <motion.div
+                      layoutId="activeProjectTab"
+                      className={styles.activeBg}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              ))}
             </div>
 
-            <p className={styles.detailDesc}>{proj.description}</p>
-
-            <div className={styles.highlights}>
-              <p className={styles.highlightsTitle} style={{ color: proj.accent }}>Key Features</p>
-              <ul className={styles.highlightList}>
-                {proj.highlights.map((h) => (
-                  <li key={h} className={styles.highlightItem}>
-                    <span className={styles.arrow} style={{ color: proj.accent }}>→</span>
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.stack}>
-              <p className={styles.stackLabel}>Tech Stack</p>
-              <div className={styles.stackPills}>
-                {proj.stack.map((s) => (
-                  <span key={s} className={styles.stackPill} style={{ borderColor: `${proj.accent}30`, color: proj.accent }}>
-                    {s}
-                  </span>
-                ))}
+            {/* Detail panel */}
+            <motion.div
+              className={styles.detail}
+              key={active}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+            >
+              <div className={styles.detailTop}>
+                <div className={styles.detailEmoji} style={{ background: `${proj.accent}15`, border: `1px solid ${proj.accent}30` }}>
+                  {proj.emoji}
+                </div>
+                <div>
+                  <p className={styles.detailNum} style={{ color: proj.accent }}>{proj.id}</p>
+                  <h3 className={styles.detailName}>{proj.name}</h3>
+                  <p className={styles.detailTagline}>{proj.tagline}</p>
+                </div>
               </div>
-            </div>
+
+              <p className={styles.detailDesc}>{proj.description}</p>
+
+              <div className={styles.highlights}>
+                <p className={styles.highlightsTitle} style={{ color: proj.accent }}>Key Features</p>
+                <ul className={styles.highlightList}>
+                  {proj.highlights.map((h) => (
+                    <li key={h} className={styles.highlightItem}>
+                      <span className={styles.arrow} style={{ color: proj.accent }}>→</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className={styles.stack}>
+                <p className={styles.stackLabel}>Tech Stack</p>
+                <div className={styles.stackPills}>
+                  {proj.stack.map((s) => (
+                    <span key={s} className={styles.stackPill} style={{ borderColor: `${proj.accent}30`, color: proj.accent }}>
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className={styles.mobileLayout}>
+          {projects.map((p) => (
+            <div key={p.id} className={styles.mobileCard} style={{ "--project-accent": p.accent }}>
+              <div className={styles.detailTop}>
+                <div className={styles.detailEmoji} style={{ background: `${p.accent}15`, border: `1px solid ${p.accent}30` }}>
+                  {p.emoji}
+                </div>
+                <div>
+                  <div className={styles.mobileCardHeader}>
+                    <p className={styles.detailNum} style={{ color: p.accent }}>{p.id}</p>
+                    {p.featured && <span className={styles.featuredBadge}>Featured</span>}
+                  </div>
+                  <h3 className={styles.detailName}>{p.name}</h3>
+                  <p className={styles.detailTagline}>{p.tagline}</p>
+                </div>
+              </div>
+
+              <p className={styles.detailDesc}>{p.description}</p>
+
+              <div className={styles.highlights}>
+                <p className={styles.highlightsTitle} style={{ color: p.accent }}>Key Features</p>
+                <ul className={styles.highlightList}>
+                  {p.highlights.map((h) => (
+                    <li key={h} className={styles.highlightItem}>
+                      <span className={styles.arrow} style={{ color: p.accent }}>→</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className={styles.stack}>
+                <p className={styles.stackLabel}>Tech Stack</p>
+                <div className={styles.stackPills}>
+                  {p.stack.map((s) => (
+                    <span key={s} className={styles.stackPill} style={{ borderColor: `${p.accent}30`, color: p.accent }}>
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
